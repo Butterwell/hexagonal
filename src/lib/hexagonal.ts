@@ -110,10 +110,31 @@ export const nearestHexCenter = function (w: Point, layout: Layout) {
   return a;
 };
 
+const arc = (Math.PI * 2) / 6; // One-third PI aka one sixth of the circumference
+const angles = [0, arc, 2 * arc, 3 * arc, 4 * arc, 5 * arc];
+
 // First pass. Not aligned
-export const cartesianPointsUnitPointy = new Array(6).map(function (_, i) {
+export const cartesianPointsUnitPointy = angles.map(function (angle) {
   return {
-    x: Math.cos((i * Math.PI * 2) / 6),
-    y: Math.sin((i * Math.PI * 2) / 6),
+    x: Math.cos(angle),
+    y: Math.sin(angle),
   };
 });
+
+const hexagon = function (radius: number) {
+  // eslint-disable-next-line functional/no-let
+  let x = 0,
+    y = 0;
+  return angles.map((angle) => {
+    const x1 = Math.cos(angle) * radius;
+    const y1 = Math.sin(angle) * radius;
+    const dx = x1 - x;
+    const dy = y1 - y;
+    x = x1;
+    y = y1;
+    return [dx, dy];
+  });
+};
+
+// Trick from D3 hexbin
+export const hexagonSvg = (radius: number) => 'm' + hexagon(radius).join('l') + 'z'
