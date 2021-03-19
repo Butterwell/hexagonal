@@ -137,4 +137,5 @@ const hexagon = function (radius: number) {
 };
 
 // Trick from D3 hexbin
-export const hexagonSvg = (radius: number) => 'm' + hexagon(radius).join('l') + 'z'
+export const hexagonSvg = (radius: number) =>
+  'm' + hexagon(radius).join('l') + 'z';
