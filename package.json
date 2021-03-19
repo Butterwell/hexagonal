@@ -1,10 +1,11 @@
 {
   "name": "@butterwell/hexagonal",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Hexagonal tiling/tessellations/grid centers",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
+  "unpkg": "build/umd/hexagonal.umd.js",
   "repository": "https://github.com/Butterwell/hexagonal",
   "license": "MIT",
   "keywords": [],
